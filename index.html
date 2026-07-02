@@ -36,7 +36,7 @@
             text-align: center;
         }
 
-        /* ---------- ЭКРАН ЗАГРУЗКИ ---------- */
+        /* ---------- ЭКРАН ЗАГРУЗКИ (Логотип MSC VPN) ---------- */
         .loader-section {
             display: flex;
             flex-direction: column;
@@ -55,6 +55,7 @@
             max-width: 120px;
             height: auto;
             margin-bottom: 10px;
+            border-radius: 50%; /* Круглая рамка для логотипа MSC */
             filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.3));
         }
 
@@ -150,23 +151,26 @@
             border-color: rgba(96, 165, 250, 0.2);
         }
 
+        /* Стили специально под иконку Happ */
         .happ-icon {
             width: 80px;
             height: 80px;
-            border-radius: 24px;
-            background: transparent;
+            border-radius: 20px;
+            background: #161616; /* Темный фон под иконку */
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 16px;
-            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
             overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .happ-icon img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            display: block;
         }
 
         .happ-name {
@@ -233,7 +237,6 @@
             .happ-icon {
                 width: 64px;
                 height: 64px;
-                font-size: 28px;
             }
             .happ-name {
                 font-size: 20px;
@@ -250,10 +253,10 @@
 
 <div class="container" id="app">
 
-    <!-- ЭКРАН ЗАГРУЗКИ -->
+    <!-- ЭКРАН ЗАГРУЗКИ (Логотип MSC VPN) -->
     <div class="loader-section" id="loaderSection">
         <div class="logo-wrapper">
-            <img src="IMG_20260703_011631_904.jpg" alt="MSC VPN" class="logo-img" onerror="this.style.display='none'">
+            <img src="msc_logo.png" alt="MSC VPN" class="logo-img" onerror="this.style.display='none'">
         </div>
         <div class="spinner"></div>
         <div class="loader-text">Подключение к <strong>MSC VPN</strong> ...</div>
@@ -267,11 +270,10 @@
     <div class="main-section" id="mainSection">
         <div class="main-title">Наши поддерживаемые клиенты:</div>
 
-        <!-- Карточка Happ -->
+        <!-- Карточка Happ (Иконка Happ) -->
         <div class="happ-card">
-            <!-- Фото-лого внутри карточки -->
             <div class="happ-icon">
-                <img src="IMG_20260703_011631_904.jpg" alt="MSC VPN">
+                <img src="happ_icon.png" alt="Happ">
             </div>
             <div class="happ-name">Happ</div>
             <div class="happ-desc">Основной поддерживаемый клиент</div>
