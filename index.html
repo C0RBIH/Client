@@ -36,7 +36,7 @@
             text-align: center;
         }
 
-        /* ---------- ЭКРАН ЗАГРУЗКИ (Логотип MSC VPN) ---------- */
+        /* ---------- ЭКРАН ЗАГРУЗКИ (MSC Лого в центре круга) ---------- */
         .loader-section {
             display: flex;
             flex-direction: column;
@@ -45,32 +45,48 @@
             padding: 16px 0 12px;
         }
 
-        .logo-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .logo-img {
-            max-width: 120px;
-            height: auto;
-            margin-bottom: 10px;
-            border-radius: 50%; /* Круглая рамка для логотипа MSC */
-            filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.3));
-        }
-
-        .spinner {
-            width: 72px;
-            height: 72px;
-            border-radius: 50%;
-            border: 4px solid rgba(59, 130, 246, 0.15);
-            border-top-color: #3b82f6;
-            animation: spin 0.9s linear infinite;
+        .loader-spinner-container {
+            position: relative;
+            width: 130px;
+            height: 130px;
             margin: 4px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .spinner-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid rgba(59, 130, 246, 0.1);
+            border-top-color: #3b82f6;
+            border-right-color: #60a5fa;
+            animation: spin 1.2s linear infinite;
         }
 
         @keyframes spin {
             to { transform: rotate(360deg); }
+        }
+
+        .center-logo-wrapper {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #131720;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        .center-logo-wrapper img {
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
+            border-radius: 50%;
         }
 
         .loader-text {
@@ -99,7 +115,7 @@
             background: #1e293b;
             border-radius: 8px;
             overflow: hidden;
-            margin-top: 4px;
+            margin-top: -4px;
         }
 
         .progress-fill {
@@ -151,19 +167,17 @@
             border-color: rgba(96, 165, 250, 0.2);
         }
 
-        /* Стили специально под иконку Happ */
+        /* Исправленный блок для логотипа Happ */
         .happ-icon {
             width: 80px;
             height: 80px;
             border-radius: 20px;
-            background: #161616; /* Темный фон под иконку */
+            background: transparent;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 16px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .happ-icon img {
@@ -234,6 +248,14 @@
             .container {
                 padding: 24px 16px 28px;
             }
+            .loader-spinner-container {
+                width: 110px;
+                height: 110px;
+            }
+            .center-logo-wrapper {
+                width: 66px;
+                height: 66px;
+            }
             .happ-icon {
                 width: 64px;
                 height: 64px;
@@ -253,12 +275,16 @@
 
 <div class="container" id="app">
 
-    <!-- ЭКРАН ЗАГРУЗКИ (Логотип MSC VPN) -->
+    <!-- ЭКРАН ЗАГРУЗКИ (Логотип MSC в центре круга) -->
     <div class="loader-section" id="loaderSection">
-        <div class="logo-wrapper">
-            <img src="msc_logo.png" alt="MSC VPN" class="logo-img" onerror="this.style.display='none'">
+        
+        <div class="loader-spinner-container">
+            <div class="spinner-ring"></div>
+            <div class="center-logo-wrapper">
+                <img src="msc_logo.png" alt="MSC VPN" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><text x=\'50%\' y=\'55%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-size=\'18\' font-weight=\'700\' fill=\'%233b82f6\'>MSC</text></svg>'">
+            </div>
         </div>
-        <div class="spinner"></div>
+
         <div class="loader-text">Подключение к <strong>MSC VPN</strong> ...</div>
         <div class="countdown" id="countdown">3</div>
         <div class="progress-bar">
@@ -270,10 +296,11 @@
     <div class="main-section" id="mainSection">
         <div class="main-title">Наши поддерживаемые клиенты:</div>
 
-        <!-- Карточка Happ (Иконка Happ) -->
+        <!-- Карточка Happ -->
         <div class="happ-card">
             <div class="happ-icon">
-                <img src="happ_icon.png" alt="Happ">
+                <!-- Исправлено: убрал лишний темный фон, теперь логотип будет чистым -->
+                <img src="happ_icon.png" alt="Happ" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' rx=\'20\' fill=\'%23222\'/><text x=\'50%\' y=\'55%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-size=\'40\' font-weight=\'700\' fill=\'%23fff\'>H</text></svg>'">
             </div>
             <div class="happ-name">Happ</div>
             <div class="happ-desc">Основной поддерживаемый клиент</div>
@@ -318,10 +345,8 @@
 
         openBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            // Пытаемся открыть URL-схему
             window.location.href = happUrl;
 
-            // Если через 2 секунды страница не ушла в фон, значит приложение не установлено
             setTimeout(() => {
                 if (document.hasFocus()) {
                     alert('Приложение Happ не найдено. Установите Happ для получения подписки.');
