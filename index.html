@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MSC VPN – Подписка</title>
+    <title>MSC VPN – Happ</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
@@ -36,7 +36,7 @@
             text-align: center;
         }
 
-        /* ---------- ЛОГОТИП И ЗАГРУЗКА ---------- */
+        /* ---------- ЭКРАН ЗАГРУЗКИ ---------- */
         .loader-section {
             display: flex;
             flex-direction: column;
@@ -55,7 +55,6 @@
             max-width: 120px;
             height: auto;
             margin-bottom: 10px;
-            /* Добавьте тень, если нужно */
             filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.3));
         }
 
@@ -140,68 +139,51 @@
         .main-subtitle {
             font-size: 14px;
             color: #94a3b8;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
             font-weight: 400;
         }
 
-        /* ---------- СЕТКА КЛИЕНТОВ ---------- */
-        .clients-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .client-card {
+        /* ---------- КАРТОЧКА HAPP ---------- */
+        .happ-card {
             background: #1a1f2e;
-            border-radius: 20px;
-            padding: 18px 20px;
+            border-radius: 24px;
+            padding: 32px 20px 28px;
             border: 1px solid rgba(255, 255, 255, 0.04);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: border-color 0.3s, transform 0.2s;
+            transition: border-color 0.3s;
+            margin-bottom: 10px;
         }
 
-        .client-card:hover {
+        .happ-card:hover {
             border-color: rgba(96, 165, 250, 0.2);
-            transform: scale(1.01);
         }
 
-        .client-info {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            text-align: left;
-        }
-
-        .client-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            background: #2563eb;
+        .happ-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
             display: flex;
             align-items: center;
             justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 36px;
             font-weight: 700;
             color: #fff;
-            font-size: 16px;
-            flex-shrink: 0;
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
         }
 
-        .client-icon.happ { background: linear-gradient(135deg, #2563eb, #3b82f6); }
-        .client-icon.clash { background: linear-gradient(135deg, #7c3aed, #8b5cf6); }
-        .client-icon.shadow { background: linear-gradient(135deg, #0ea5e9, #06b6d4); }
-        .client-icon.copy { background: linear-gradient(135deg, #10b981, #34d399); }
-
-        .client-name {
-            font-size: 16px;
-            font-weight: 600;
+        .happ-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: #eef2fb;
+            letter-spacing: -0.3px;
         }
 
-        .client-desc {
-            font-size: 12px;
+        .happ-desc {
+            font-size: 14px;
             color: #94a3b8;
-            margin-top: 2px;
+            margin-top: 4px;
+            margin-bottom: 20px;
         }
 
         .open-btn {
@@ -209,21 +191,24 @@
             border: none;
             color: #fff;
             font-weight: 600;
-            font-size: 13px;
-            padding: 8px 16px;
+            font-size: 16px;
+            padding: 14px 32px;
             border-radius: 40px;
             cursor: pointer;
             transition: background 0.2s, transform 0.1s;
+            width: 100%;
+            max-width: 200px;
+            display: inline-block;
             text-decoration: none;
-            flex-shrink: 0;
-            min-width: 80px;
-            text-align: center;
         }
 
-        .open-btn:hover { background: #2563eb; }
-        .open-btn:active { transform: scale(0.95); }
-        .open-btn.green { background: #10b981; }
-        .open-btn.green:hover { background: #059669; }
+        .open-btn:hover {
+            background: #2563eb;
+        }
+
+        .open-btn:active {
+            transform: scale(0.97);
+        }
 
         .footer-note {
             margin-top: 28px;
@@ -233,32 +218,34 @@
             padding-top: 18px;
         }
 
-        /* ---------- TOAST УВЕДОМЛЕНИЕ ---------- */
-        #toast {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: #1a1f2e;
-            color: #eef2fb;
-            padding: 12px 24px;
-            border-radius: 40px;
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            opacity: 0;
-            pointer-events: none;
-            z-index: 999;
-        }
-        #toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
+        .footer-note a {
+            color: #60a5fa;
+            text-decoration: none;
+            font-weight: 500;
         }
 
+        .footer-note a:hover {
+            text-decoration: underline;
+        }
+
+        /* адаптив */
         @media (max-width: 480px) {
-            .container { padding: 20px 16px 24px; }
-            .client-card { padding: 14px 16px; }
-            .open-btn { font-size: 12px; padding: 7px 14px; min-width: 70px; }
+            .container {
+                padding: 24px 16px 28px;
+            }
+            .happ-icon {
+                width: 64px;
+                height: 64px;
+                font-size: 28px;
+            }
+            .happ-name {
+                font-size: 20px;
+            }
+            .open-btn {
+                font-size: 15px;
+                padding: 12px 28px;
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -268,9 +255,8 @@
 
     <!-- ЭКРАН ЗАГРУЗКИ -->
     <div class="loader-section" id="loaderSection">
-        <!-- Логотип (Замените logo.png на ваше изображение, загруженное в папку Client) -->
         <div class="logo-wrapper">
-            <img src="logo.png" alt="MSC VPN" class="logo-img" onerror="this.style.display='none'">
+            <img src="IMG_20260703_011631_904.jpg" alt="MSC VPN" class="logo-img" onerror="this.style.display='none'">
         </div>
         <div class="spinner"></div>
         <div class="loader-text">Подключение к <strong>MSC VPN</strong> ...</div>
@@ -282,92 +268,29 @@
 
     <!-- ОСНОВНОЙ ЭКРАН -->
     <div class="main-section" id="mainSection">
-        <div class="main-title">🚀 Импорт подписки</div>
-        <div class="main-subtitle">Нажмите на кнопку вашего приложения</div>
+        <div class="main-title">📱 Откройте в приложении</div>
+        <div class="main-subtitle">Для доступа к VPN используйте Happ</div>
 
-        <div class="clients-grid">
-            
-            <!-- Happ -->
-            <div class="client-card">
-                <div class="client-info">
-                    <div class="client-icon happ">H</div>
-                    <div>
-                        <div class="client-name">Happ</div>
-                        <div class="client-desc">Основной клиент</div>
-                    </div>
-                </div>
-                <button class="open-btn" id="openHappBtn">Открыть</button>
-            </div>
-
-            <!-- Clash / Clash Meta -->
-            <div class="client-card">
-                <div class="client-info">
-                    <div class="client-icon clash">C</div>
-                    <div>
-                        <div class="client-name">Clash Meta / Clash</div>
-                        <div class="client-desc">Windows, Android, macOS</div>
-                    </div>
-                </div>
-                <a href="clash://install-config?url=https://c0rbih.github.io/Client/sub.txt" class="open-btn">Импорт</a>
-            </div>
-
-            <!-- Shadowrocket -->
-            <div class="client-card">
-                <div class="client-info">
-                    <div class="client-icon shadow">S</div>
-                    <div>
-                        <div class="client-name">Shadowrocket</div>
-                        <div class="client-desc">iOS / iPadOS</div>
-                    </div>
-                </div>
-                <a href="shadowrocket://add/subscribe?url=https://c0rbih.github.io/Client/sub.txt" class="open-btn">Импорт</a>
-            </div>
-
-            <!-- Stash (iOS аналог Clash) -->
-            <div class="client-card">
-                <div class="client-info">
-                    <div class="client-icon clash" style="background: #f59e0b;">S</div>
-                    <div>
-                        <div class="client-name">Stash</div>
-                        <div class="client-desc">iOS / iPadOS</div>
-                    </div>
-                </div>
-                <a href="stash://install-config?url=https://c0rbih.github.io/Client/sub.txt" class="open-btn">Импорт</a>
-            </div>
-
-            <!-- Кнопка копирования ссылки -->
-            <div class="client-card">
-                <div class="client-info">
-                    <div class="client-icon copy">📋</div>
-                    <div>
-                        <div class="client-name">Скопировать URL</div>
-                        <div class="client-desc">Для V2RayNG / Sing-box / Вручную</div>
-                    </div>
-                </div>
-                <button class="open-btn green" id="copyBtn">Копировать</button>
-            </div>
-
+        <!-- Карточка Happ -->
+        <div class="happ-card">
+            <div class="happ-icon">H</div>
+            <div class="happ-name">Happ</div>
+            <div class="happ-desc">Поддерживаемый клиент</div>
+            <button class="open-btn" id="openHappBtn">Открыть</button>
         </div>
 
         <div class="footer-note">
-            🔒 Защищённое соединение · <a href="#" style="color:#60a5fa; text-decoration:none;">msc-vpn.ru</a>
+            🔒 Защищённое соединение · <a href="#">msc-vpn.ru</a>
         </div>
     </div>
 
 </div>
-
-<!-- TOAST УВЕДОМЛЕНИЕ -->
-<div id="toast">✅ Ссылка на подписку скопирована!</div>
 
 <script>
     (function() {
         const loader = document.getElementById('loaderSection');
         const main = document.getElementById('mainSection');
         const countdownEl = document.getElementById('countdown');
-        const toast = document.getElementById('toast');
-
-        // URL подписки (для V2Ray и ручного ввода)
-        const subUrl = 'https://c0rbih.github.io/Client/sub.txt';
 
         // Обратный отсчёт 3 секунды
         let seconds = 3;
@@ -388,46 +311,23 @@
             }
         }, 1000);
 
-        // Кнопка Happ
+        // Кнопка "Открыть" — активирует ссылку Happ
         const openBtn = document.getElementById('openHappBtn');
         const happUrl = 'happ://crypt5/fzvdKc9iY35kYsOBDVeUDv2g18i0nQ4qKcVsGZDAqgChcnqw5Klbrftlx/K7R2mQ12AW1+0eldyTNgfFwzBrYBHs6pp83xogIvgNlH3hwKrriTX+9fyEhxEw0a9+63H4FXaKuzA02SSdZhu1Ieil44qARNfqV9E4T/GdpTZ7JRBFiqI/Rs294frWkAzRajqKDekRBcZR7UKVDkbP6wa9PT==Q0TefULU3NiHSTcFB5NrBv7g2dYQoMgYVUniMH6opu5l39t733VWZ/RQKy+nPmwKMgD+rh8Iahj+2BuudpdHYkbOpu9WHAKUf5M4/iLFbqMniCTAQD8y8gcW6Yl0HAX/sOImcdqFOMPYah0T5uk9wyPIFKlE/SqFKRQGDOE5vpu7+c4unAYtJrCwQrbolrj7R8pm/uD1DVI0D+t8YBDIdDgmCFoVzVzBXRcYu8+fRdFQvH7ES0ykqPpEQJ8wTLYnOTtT8gMH02hVGPHmx8O/Mihll9MWo1i6VwzLy06LCellRLB5GuaIZxQROGgKFTHUbm/AkoOHez8cY+R7GgGnMH6FRrBMjPqr2dReFbUbu8MERrgp/yvNLS2dPqULtB2yjvcTUM2njLWKLoJFKXqaBo/7a5E3WUb6PNpJ9eAbc8LWpUGu1Dtea6mR+b9uviX+fcR+U2ZsAHnbGo0Wtkv3JKg1U8Ay782I8olrbeqTwJXJkF4bNKOOD5Zu+dSbU1UFpK5szaM0R/bJk2sLoSq8xcrS3E49KuH6RDRC4htTrWXcQFTv9LRn1Vl3GEqRfu7u+1KXlPfxfeWx0TAU4bPAETgUCB2HM7kP+bE38taBQMmLwNbOBed2d7Ke6+8b0uE7JF6nt3AWRy6A8tAm9APvvok/6BdN2BENp6m1XYJrfow=ff';
 
         openBtn.addEventListener('click', function(e) {
             e.preventDefault();
+            // Пытаемся открыть URL-схему
             window.location.href = happUrl;
 
+            // Если через 2 секунды страница не ушла в фон, значит приложение не установлено
             setTimeout(() => {
                 if (document.hasFocus()) {
                     alert('Приложение Happ не найдено. Установите Happ для получения подписки.');
+                    // Можно также перенаправить на страницу загрузки:
+                    // window.location.href = 'https://example.com/download-happ';
                 }
             }, 2000);
-        });
-
-        // Кнопка "Копировать URL подписки"
-        const copyBtn = document.getElementById('copyBtn');
-        
-        function showToast(text = '✅ Ссылка на подписку скопирована!') {
-            toast.textContent = text;
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 2500);
-        }
-
-        copyBtn.addEventListener('click', async function() {
-            try {
-                await navigator.clipboard.writeText(subUrl);
-                showToast('✅ URL подписки скопирован!');
-            } catch (err) {
-                // Fallback для старых браузеров
-                const textArea = document.createElement("textarea");
-                textArea.value = subUrl;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                showToast('✅ URL подписки скопирован!');
-            }
         });
 
     })();
